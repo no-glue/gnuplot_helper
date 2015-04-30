@@ -18,11 +18,8 @@ class GnuplotHelper(object):
             print skipped
             floats = skipped.astype("float")
             data = Gnuplot.Data(floats[:,1], floats[:,0], with_="lp", title=f)
-            data_points = Gnuplot.Data(floats[:,1], floats[:,0], using='1:2:(sprintf("(%d, %d)", $1, $2))', with_="labels offset 1")
             if i == 0:
                 g.plot(data)
-                g.replot(data_points)
                 continue
             g.replot(data)
-            g.replot(data_points)
         g.hardcopy(filename=out, terminal=terminal)
