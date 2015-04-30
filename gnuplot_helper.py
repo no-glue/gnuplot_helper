@@ -5,8 +5,10 @@ import numpy
 import Gnuplot
 
 class GnuplotHelper(object):
-    def plot_multiple_xy(self, files, out, skipColumns, terminal):
+    def plot_multiple_xy(self, files, out, skipColumns, terminal, xlabel, ylabel):
         g = Gnuplot.Gnuplot(persist = 0)
+        g("set xlabel '{0}'".format(xlabel))
+        g("set ylabel '{0}'".format(ylabel))
         for i, f in enumerate(files):
             reader = csv.reader(open(f, "rb"), delimiter='\t')
             values = list(reader)
